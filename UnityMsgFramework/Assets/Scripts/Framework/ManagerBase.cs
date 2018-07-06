@@ -21,6 +21,7 @@ public class ManagerBase : MonoBase
     /// <summary>
     /// 注册事件码 和 对应的脚本
     ///        一个脚本关注多个事件
+    ///     用于 各类 Base 重写
     /// </summary>
     /// <param name="eventCodes">消息的事件码集合</param>
     /// <param name="monoBase">对应的脚本</param>
@@ -89,18 +90,19 @@ public class ManagerBase : MonoBase
             }
             else
             {
-                Debug.Log("需要移除的脚本，没有注册过！");
+                Debug.LogWarning("需要移除的脚本，没有注册过！");
             }
         }
         else
         {
-            Debug.Log("需要移除的事件码，没有注册过！");
+            Debug.LogWarning("需要移除的事件码，没有注册过！");
         }
         // 事件码对应的脚本为0，则删除该事件码
-        if (_dictEventCodeBase[eventCode].Count == 0)
+        if (_dictEventCodeBase.ContainsKey(eventCode) && _dictEventCodeBase[eventCode].Count == 0)
         {
             _dictEventCodeBase.Remove(eventCode);
         }
+
     }
 
 
@@ -108,6 +110,7 @@ public class ManagerBase : MonoBase
 
     /// <summary>
     /// 执行发来的消息
+    ///     用于 各类 脚本 执行
     /// </summary>
     /// <param name="eventCode">事件码</param>
     /// <param name="msgValue">消息的参数</param>
@@ -121,6 +124,9 @@ public class ManagerBase : MonoBase
         foreach (MonoBase monoBase in _dictEventCodeBase[eventCode])
         {
             monoBase.Execute(eventCode, msgValue);
+            // 当在执行中删除了事件码，防止Net框架再次执行一遍
+            if(!_dictEventCodeBase.ContainsKey(eventCode))
+                break;
         }
     }
 

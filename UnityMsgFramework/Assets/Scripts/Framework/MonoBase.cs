@@ -21,6 +21,7 @@ public class MonoBase : MonoBehaviour
 
     /// <summary>
     /// 绑定事件码
+    ///     各类Base重写，各类脚本执行
     /// </summary>
     /// <param name="eventCodes">事件码</param>
     protected virtual void BindEvent(params int[] eventCodes)
@@ -32,30 +33,34 @@ public class MonoBase : MonoBehaviour
             _eventCodeList.Add(eventCode);
         }
     }
+
     /// <summary>
     /// 解绑事件码
+    ///     各类Base重写，各类脚本执行
     /// </summary>
     protected virtual void UnBindEvent()
     {
 
     }
+
     /// <summary>
-    /// 解绑事件码
+    /// 解绑
     /// </summary>
     /// <param name="manager">区域管理者</param>
     /// <param name="monoBase">脚本对象</param>
     protected virtual void UnBind(ManagerBase manager, MonoBase monoBase)
     {
-        if(_eventCodeList.Count==0)
-            throw new Exception("要解除事件码的脚本，没有绑定的事件码");
+        if (_eventCodeList.Count == 0) 
+            throw new Exception(GetType() + "/UnBind()" + "要解除事件码的脚本，没有绑定的事件码"+ Environment.NewLine+ "如果在程序结束出现，则不必理会");
         manager.Remove(_eventCodeList.ToArray(),monoBase);
+        this._eventCodeList.Clear();
     }
 
 
 
     /// <summary>
     /// 执行发来的消息
-    ///     用于ManagerBase 和 具体的脚本
+    ///     ManagerBase 重写 ，各类脚本执行
     /// </summary>
     /// <param name="eventCode">事件码</param>
     /// <param name="msgValue">消息的参数</param>
@@ -68,6 +73,7 @@ public class MonoBase : MonoBehaviour
 
     /// <summary>
     ///  发送消息
+    ///     各类脚本执行
     /// </summary>
     /// <param name="areaCode">接受对象的模块码/区域码</param>
     /// <param name="eventCode">事件码</param>
@@ -80,7 +86,7 @@ public class MonoBase : MonoBehaviour
 
     /// <summary>
     /// 销毁脚本时，解绑事件码
-    ///       解绑消息，就不需要重写，其他需求就需要重写
+    ///       解绑消息，脚本就不需要重写，其他需求就在脚本中重写
     /// </summary>
     protected virtual void OnDestroy()
     {

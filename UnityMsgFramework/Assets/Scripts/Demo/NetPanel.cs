@@ -16,6 +16,7 @@ class NetPanel:NetBase
         {
             case NetEventCode.NET_DEMO:
                 // 设计方法处理消息
+                UnBindEvent();
                 Progress(msgValue);
                 break;
             default:
@@ -32,7 +33,7 @@ class NetPanel:NetBase
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            OnDestroy();
+            
         }
 
         if (Input.GetKeyDown(KeyCode.A))

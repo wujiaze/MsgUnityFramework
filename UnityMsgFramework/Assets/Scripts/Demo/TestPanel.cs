@@ -16,13 +16,14 @@ public class TestPanel : UIBase
     private void Awake()
     {
         Button.onClick.AddListener(OnClickHandle);
+        // 绑定事件
         BindEvent(UIEventCode.UI_DEMO);
     }
 
     private void OnClickHandle()
     {
         Text.text += "1";
-        Dispatch(AreaCode.AUDIO,AudioEventCode.AUDIO_DEMO,"1.mp3");
+        Dispatch(AreaCode.AUDIO, AudioEventCode.AUDIO_DEMO, "1.mp3");
         Dispatch(AreaCode.UI, UIEventCode.UI_DEMO, "1.mp3");
         Dispatch(AreaCode.NET, NetEventCode.NET_DEMO, "1111");
     }
@@ -32,7 +33,7 @@ public class TestPanel : UIBase
         switch (eventCode)
         {
             case UIEventCode.UI_DEMO:
-                Debug.Log("我也关心" + msgValue);
+                Debug.Log(GetType()+"/" + msgValue);
                 break;
         }
     }
