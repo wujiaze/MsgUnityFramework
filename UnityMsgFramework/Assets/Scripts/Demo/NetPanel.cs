@@ -2,7 +2,7 @@
 
 using UnityEngine;
 
-class NetPanel:NetBase
+class NetPanel:MsgNetBase
 {
     // 字段
     private void Awake()

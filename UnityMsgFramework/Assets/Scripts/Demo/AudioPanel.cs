@@ -7,7 +7,7 @@
  *		日期 2018.6.22
 */
 using UnityEngine;
-public class AudioPanel : AudioBase 
+public class AudioPanel : MsgAudioBase 
 {
 
     private void Awake()

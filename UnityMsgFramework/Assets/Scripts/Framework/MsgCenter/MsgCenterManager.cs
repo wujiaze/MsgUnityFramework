@@ -6,7 +6,7 @@
  *
  *		日期 2018.6.22
 */
-public class MsgCenterManager : ManagerBase
+public class MsgCenterManager : MsgManagerBase
 {
     public static MsgCenterManager Instance;
 
@@ -28,19 +28,19 @@ public class MsgCenterManager : ManagerBase
         switch (areaCode)
         {
             case AreaCode.AUDIO:
-                AudioManager.Instance.Execute(eventCode, msgValue);
+                MsgAudioManager.Instance.Execute(eventCode, msgValue);
                 break;
             case AreaCode.CHARACTER:
-                CharacterManager.Instance.Execute(eventCode,msgValue);
+                MsgCharacterManager.Instance.Execute(eventCode,msgValue);
                 break;
             case AreaCode.GAME:
-                GameMgr.Instance.Execute(eventCode, msgValue);
+                MsgGameManager.Instance.Execute(eventCode, msgValue);
                 break;
             case AreaCode.NET:
-                NetManager.Instance.Execute(eventCode, msgValue);
+                MsgNetManager.Instance.Execute(eventCode, msgValue);
                 break;
             case AreaCode.UI:
-                UIManager.Instance.Execute(eventCode, msgValue);
+                MsgUIManager.Instance.Execute(eventCode, msgValue);
                 break;
             // 添加新的模块 
             default:

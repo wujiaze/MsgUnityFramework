@@ -7,9 +7,9 @@
  *		日期 2018.6.22
 */
 using UnityEngine;
-public class UIManager : ManagerBase
+public class MsgUIManager : MsgManagerBase
 {
-    public static UIManager Instance;
+    public static MsgUIManager Instance;
     void Awake()
     {
         Instance = this;

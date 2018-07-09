@@ -10,12 +10,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ManagerBase : MonoBase
+public class MsgManagerBase : MsgMonoBase
 {
     /// <summary>
     /// 存储 消息的事件码 和 对应脚本 的字典
     /// </summary>
-    private Dictionary<int, List<MonoBase>> _dictEventCodeBase = new Dictionary<int, List<MonoBase>>();//  重点 每一个继承 ManagerBase 的脚本(即每一个Manager)都有一个自身的字典（即不同引用的字典）
+    private Dictionary<int, List<MsgMonoBase>> _dictEventCodeBase = new Dictionary<int, List<MsgMonoBase>>();//  重点 每一个继承 MsgManagerBase 的脚本(即每一个Manager)都有一个自身的字典（即不同引用的字典）
 
 
     /// <summary>
@@ -24,14 +24,14 @@ public class ManagerBase : MonoBase
     ///     用于 各类 Base 重写
     /// </summary>
     /// <param name="eventCodes">消息的事件码集合</param>
-    /// <param name="monoBase">对应的脚本</param>
-    public void Add(int[] eventCodes, MonoBase monoBase)
+    /// <param name="msgMonoBase">对应的脚本</param>
+    public void Add(int[] eventCodes, MsgMonoBase msgMonoBase)
     {
         if (eventCodes == null) return;
-        if (monoBase == null) return;
+        if (msgMonoBase == null) return;
         foreach (int eventCode in eventCodes)
         {
-            Add(eventCode, monoBase);
+            Add(eventCode, msgMonoBase);
         }
     }
     /// <summary>
@@ -39,21 +39,21 @@ public class ManagerBase : MonoBase
     ///        一个脚本关注一个事件
     /// </summary>
     /// <param name="eventCode">消息的事件码</param>
-    /// <param name="monoBase">对应的脚本</param>
-    private void Add(int eventCode, MonoBase monoBase)
+    /// <param name="msgMonoBase">对应的脚本</param>
+    private void Add(int eventCode, MsgMonoBase msgMonoBase)
     {
         if (!_dictEventCodeBase.ContainsKey(eventCode))
         {
             // 没有对应的事件码
-            List<MonoBase> list = new List<MonoBase>();
-            list.Add(monoBase);
+            List<MsgMonoBase> list = new List<MsgMonoBase>();
+            list.Add(msgMonoBase);
             _dictEventCodeBase.Add(eventCode, list);
         }
         else
         {
-            if (!_dictEventCodeBase[eventCode].Contains(monoBase))
+            if (!_dictEventCodeBase[eventCode].Contains(msgMonoBase))
             {
-                _dictEventCodeBase[eventCode].Add(monoBase);
+                _dictEventCodeBase[eventCode].Add(msgMonoBase);
             }
         }
     }
@@ -64,14 +64,14 @@ public class ManagerBase : MonoBase
     ///        一个脚本 对应 多个事件码
     /// </summary>
     /// <param name="eventCodes">消息的事件码集合</param>
-    /// <param name="monoBase">对应的脚本</param>
-    public void Remove(int[] eventCodes, MonoBase monoBase)
+    /// <param name="msgMonoBase">对应的脚本</param>
+    public void Remove(int[] eventCodes, MsgMonoBase msgMonoBase)
     {
         if (eventCodes == null) return;
-        if (monoBase == null) return;
+        if (msgMonoBase == null) return;
         foreach (int eventCode in eventCodes)
         {
-            Remove(eventCode, monoBase);
+            Remove(eventCode, msgMonoBase);
         }
     }
     /// <summary>
@@ -79,14 +79,14 @@ public class ManagerBase : MonoBase
     ///         一个脚本 对应 一个事件码
     /// </summary>
     /// <param name="eventCode">消息的事件码</param>
-    /// <param name="monoBase">对应的脚本</param>
-    private void Remove(int eventCode, MonoBase monoBase)
+    /// <param name="msgMonoBase">对应的脚本</param>
+    private void Remove(int eventCode, MsgMonoBase msgMonoBase)
     {
         if (_dictEventCodeBase.ContainsKey(eventCode))
         {
-            if (_dictEventCodeBase[eventCode].Contains(monoBase))
+            if (_dictEventCodeBase[eventCode].Contains(msgMonoBase))
             {
-                _dictEventCodeBase[eventCode].Remove(monoBase);
+                _dictEventCodeBase[eventCode].Remove(msgMonoBase);
             }
             else
             {
@@ -121,7 +121,7 @@ public class ManagerBase : MonoBase
             Debug.LogWarning(GetType() + "/ 需要执行的消息码，没有注册过");
             return;
         }
-        foreach (MonoBase monoBase in _dictEventCodeBase[eventCode])
+        foreach (MsgMonoBase monoBase in _dictEventCodeBase[eventCode])
         {
             monoBase.Execute(eventCode, msgValue);
             // 当在执行中删除了事件码，防止Net框架再次执行一遍

@@ -12,18 +12,18 @@
  *		日期 2018.6.22
 */
 using UnityEngine;
-public class FrameworkManager : MonoBehaviour 
+public class MsgScriptsManager : MonoBehaviour 
 {
     // 添加新的 Manager，在这里添加
     void Awake()
 	{
         DontDestroyOnLoad(this);
 	    gameObject.AddComponent<MsgCenterManager>();
-        gameObject.AddComponent<UIManager>();
-        gameObject.AddComponent<AudioManager>();
-        gameObject.AddComponent<NetManager>();
-	    gameObject.AddComponent<GameMgr>();
-	    gameObject.AddComponent<CharacterManager>();
+        gameObject.AddComponent<MsgUIManager>();
+        gameObject.AddComponent<MsgAudioManager>();
+        gameObject.AddComponent<MsgNetManager>();
+	    gameObject.AddComponent<MsgGameManager>();
+	    gameObject.AddComponent<MsgCharacterManager>();
 	}
 	
 }

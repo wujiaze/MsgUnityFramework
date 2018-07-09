@@ -9,7 +9,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class TestPanel : UIBase
+public class TestPanel : MsgUIBase
 {
     public Button Button;
     public Text Text;

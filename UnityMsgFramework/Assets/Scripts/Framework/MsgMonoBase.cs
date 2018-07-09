@@ -11,8 +11,9 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-public class MonoBase : MonoBehaviour
+public class MsgMonoBase : MonoBehaviour
 {
+    #region MsgFramework
     /// <summary>
     /// 监听的事件码集合
     ///     主要用于解绑事件码
@@ -28,7 +29,7 @@ public class MonoBase : MonoBehaviour
     {
         foreach (int eventCode in eventCodes)
         {
-            if(_eventCodeList.Contains(eventCode))
+            if (_eventCodeList.Contains(eventCode))
                 continue;
             _eventCodeList.Add(eventCode);
         }
@@ -46,13 +47,13 @@ public class MonoBase : MonoBehaviour
     /// <summary>
     /// 解绑
     /// </summary>
-    /// <param name="manager">区域管理者</param>
-    /// <param name="monoBase">脚本对象</param>
-    protected virtual void UnBind(ManagerBase manager, MonoBase monoBase)
+    /// <param name="msgManager">区域管理者</param>
+    /// <param name="msgMonoBase">脚本对象</param>
+    protected virtual void UnBind(MsgManagerBase msgManager, MsgMonoBase msgMonoBase)
     {
-        if (_eventCodeList.Count == 0) 
-            throw new Exception(GetType() + "/UnBind()" + "要解除事件码的脚本，没有绑定的事件码"+ Environment.NewLine+ "如果在程序结束出现，则不必理会");
-        manager.Remove(_eventCodeList.ToArray(),monoBase);
+        if (_eventCodeList.Count == 0)
+            throw new Exception(GetType() + "/UnBind()" + "要解除事件码的脚本，没有绑定的事件码" + Environment.NewLine + "如果在程序结束出现，则不必理会");
+        msgManager.Remove(_eventCodeList.ToArray(), msgMonoBase);
         this._eventCodeList.Clear();
     }
 
@@ -60,7 +61,7 @@ public class MonoBase : MonoBehaviour
 
     /// <summary>
     /// 执行发来的消息
-    ///     ManagerBase 重写 ，各类脚本执行
+    ///     MsgManagerBase 重写 ，各类脚本执行
     /// </summary>
     /// <param name="eventCode">事件码</param>
     /// <param name="msgValue">消息的参数</param>
@@ -92,6 +93,10 @@ public class MonoBase : MonoBehaviour
     {
         this.UnBindEvent(); // 会执行具体脚本的 OnDestroy 方法，从而执行对应的 UnBindEvent 方法
     }
+
+
+    #endregion
+
 
 
 }

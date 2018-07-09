@@ -6,9 +6,9 @@
  *
  *		日期 2018.6.22
 */
-public class AudioManager : ManagerBase
+public class MsgAudioManager : MsgManagerBase
 {
-    public static AudioManager Instance = null;
+    public static MsgAudioManager Instance = null;
 
     private void Awake()
     {

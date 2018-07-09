@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterManager : ManagerBase
+public class MsgNetManager : MsgManagerBase
 {
-
-    public static CharacterManager Instance;
-
+    // 单例
+    public static MsgNetManager Instance;
     private void Awake()
     {
         Instance = this;
     }
+
+
 
 }

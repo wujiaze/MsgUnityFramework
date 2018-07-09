@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameMgr : ManagerBase
+public class MsgGameManager : MsgManagerBase
 {
 
-    public static GameMgr Instance;
+    public static MsgGameManager Instance;
 
     private void Awake()
     {
