@@ -16,6 +16,7 @@ class NetPanel:MsgNetBase
         {
             case NetEventCode.NET_DEMO:
                 // 设计方法处理消息
+                gameObject.SetActive(true);
                 UnBindEvent();
                 Progress(msgValue);
                 break;
@@ -33,7 +34,7 @@ class NetPanel:MsgNetBase
     {
         if (Input.GetKeyDown(KeyCode.B))
         {
-            
+            gameObject.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.A))
