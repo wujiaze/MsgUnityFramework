@@ -90,12 +90,12 @@ public class MsgManagerBase : MsgMonoBase
             }
             else
             {
-                Debug.LogWarning("需要移除的脚本，没有注册过！");
+                Debug.LogWarning(GetType() + " / Remove / " + "需要移除的脚本，没有注册过！");
             }
         }
         else
         {
-            Debug.LogWarning("需要移除的事件码，没有注册过！");
+            Debug.LogWarning(GetType() + " / Remove / " + "需要移除的事件码，没有注册过！");
         }
         // 事件码对应的脚本为0，则删除该事件码
         if (_dictEventCodeBase.ContainsKey(eventCode) && _dictEventCodeBase[eventCode].Count == 0)
