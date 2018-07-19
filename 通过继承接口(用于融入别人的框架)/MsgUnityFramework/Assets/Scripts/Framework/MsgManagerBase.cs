@@ -45,7 +45,7 @@ public class MsgManagerBase :MonoBehaviour
     /// </summary>
     /// <param name="eventCodes">消息的事件码集合</param>
     /// <param name="msgMonoBase">对应的脚本</param>
-    public void BindEvent(IExecute msgMonoBase,params int[] eventCodes)
+    public virtual void BindEvent(IExecute msgMonoBase,params int[] eventCodes)
     {
         if (eventCodes == null) return;
         if (msgMonoBase == null) return;
@@ -58,7 +58,7 @@ public class MsgManagerBase :MonoBehaviour
     /// <summary>
     /// 解绑事件码
     /// </summary>
-    public void UnBindEvents(IExecute msgMonoBase)
+    public virtual void UnBindEvents(IExecute msgMonoBase)
     {
         if(msgMonoBase ==null)return;
         // 从字典2 获取 事件码 ，在字典1中删除
@@ -90,7 +90,7 @@ public class MsgManagerBase :MonoBehaviour
     /// </summary>
     /// <param name="eventCode">事件码</param>
     /// <param name="msgValue">消息的参数</param>
-    public void Execute(int eventCode, object msgValue)
+    public virtual void Execute(int eventCode, object msgValue)
     {
         if (!_dictEventCodeBase.ContainsKey(eventCode))
         {
