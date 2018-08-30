@@ -7,7 +7,7 @@
  *		日期 2018.6.22
 */
 
-using Assets.Scripts.Framework;
+using Msg;
 using UnityEngine;
 public class AudioPanel:MonoBehaviour,IExecute
 {

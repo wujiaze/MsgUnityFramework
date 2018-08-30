@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Framework;
+﻿
+using Msg;
 using UnityEngine;
 
 class NetPanel:MonoBehaviour,IExecute

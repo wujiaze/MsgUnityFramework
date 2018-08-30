@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Assets.Scripts.Framework;
+﻿using Msg;
 using UnityEngine;
 
 public class UIPanel : MonoBehaviour,IExecute
