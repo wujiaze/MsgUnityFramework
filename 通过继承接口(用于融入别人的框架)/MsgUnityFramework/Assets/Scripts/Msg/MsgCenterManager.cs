@@ -6,6 +6,9 @@
  *
  *		日期 2018.6.22
 */
+
+using System;
+
 namespace Msg
 {
     public class MsgCenterManager
@@ -68,6 +71,7 @@ namespace Msg
                     break;
                 // 添加新的模块 
                 default:
+                    throw new Exception("需要的Manager在这里没添加");
                     break;
             }
         }
