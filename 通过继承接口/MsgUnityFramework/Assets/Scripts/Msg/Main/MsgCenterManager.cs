@@ -72,7 +72,6 @@ namespace Msg
                 // 添加新的模块 
                 default:
                     throw new Exception("需要的Manager在这里没添加");
-                    break;
             }
         }
     }
