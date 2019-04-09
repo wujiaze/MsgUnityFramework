@@ -69,6 +69,9 @@ namespace Msg
                 case AreaCode.UI:
                     MsgUIManager.Instance.Execute(eventCode, msgValue);
                     break;
+                case AreaCode.VIDEO:
+                    MsgVideoManager.Instance.Execute(eventCode, msgValue);
+                    break;
                 // 添加新的模块 
                 default:
                     throw new Exception("需要的Manager在这里没添加");

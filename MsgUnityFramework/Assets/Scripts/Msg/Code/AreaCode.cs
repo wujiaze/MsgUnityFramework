@@ -14,7 +14,7 @@ public class AreaCode
     public const int CHARACTER = 2;      // CHARACTER 模块
     public const int NET = 3;            // NET 模块
     public const int AUDIO = 4;          // AUDIO 模块
-
+    public const int VIDEO = 5;
     // 可以根据需要添加新的功能模块
 }
 
